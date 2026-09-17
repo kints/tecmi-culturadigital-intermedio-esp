@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen de Cultura Digital</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Cultura Digital - Primer Semestre</h1>
+        </header>
+
+        <div id="start-screen" class="screen active">
+            <h2>¡Bienvenido al examen interactivo!</h2>
+            <p>En este examen pondrás a prueba lo que aprendiste sobre Cultura Digital con preguntas seleccionadas al azar.</p>
+            <p>Lee cuidadosamente cada pregunta y selecciona la opción correcta.</p>
+            
+            <div class="timer-settings-card">
+                <h3>⚙️ Configuración del Examen</h3>
+
+                <div class="setting-row">
+                    <label for="questions-count" class="setting-label"><strong>Cantidad de preguntas:</strong></label>
+                    <div class="input-with-unit">
+                        <input type="number" id="questions-count" value="16" min="1" max="60">
+                        <span id="max-questions-label">preguntas (mín. 1, máx. 60)</span>
+                    </div>
+                </div>
+
+                <div class="setting-divider"></div>
+
+                <div class="setting-row">
+                    <label class="switch-label">
+                        <input type="checkbox" id="timer-enable" checked>
+                        <span class="switch-text">Activar contrarreloj</span>
+                    </label>
+                </div>
+                <div id="timer-input-container" class="setting-row timer-input-group">
+                    <label for="timer-minutes">Duración total:</label>
+                    <div class="input-with-unit">
+                        <input type="number" id="timer-minutes" value="50" min="1" max="180">
+                        <span>minutos</span>
+                    </div>
+                </div>
+            </div>
+
+            <button id="start-btn" class="btn primary">Comenzar Examen</button>
+        </div>
+
+        <div id="quiz-screen" class="screen">
+            <div class="stats">
+                <span class="badge correct">Correctas: <span id="score-correct">0</span></span>
+                <span class="badge incorrect">Incorrectas: <span id="score-incorrect">0</span></span>
+                <span class="badge progress">Pregunta: <span id="question-counter">1</span> / <span id="total-questions-counter">16</span></span>
+                <span id="timer-badge" class="badge timer">⏱️ <span id="timer-display">50:00</span></span>
+            </div>
+            
+            <div class="question-container">
+                <h3 id="question-text">¿Pregunta?</h3>
+                <div id="options-container" class="options-grid">
+                    <!-- Botones de opciones generados por JS -->
+                </div>
+            </div>
+            
+            <div id="feedback-container" class="feedback hidden">
+                <h4 id="feedback-title"></h4>
+                <p id="feedback-text"></p>
+                <button id="next-btn" class="btn secondary">Siguiente Pregunta</button>
+            </div>
+        </div>
+
+        <div id="end-screen" class="screen">
+            <h2>Resultados del Examen</h2>
+            <div id="timeout-alert" class="alert-timeout hidden">
+                ⚠️ <strong>¡El tiempo límite del contrarreloj se ha agotado!</strong> Se muestran los resultados de lo que respondiste.
+            </div>
+
+            <div class="final-scores">
+                <div class="score-card">
+                    <span class="score-title">Correctas</span>
+                    <span id="final-correct" class="score-number correct-color">0</span>
+                </div>
+                <div class="score-card">
+                    <span class="score-title">Incorrectas</span>
+                    <span id="final-incorrect" class="score-number incorrect-color">0</span>
+                </div>
+            </div>
+
+            <div class="time-metrics-card">
+                <div class="metric-item">
+                    <span class="metric-icon">⏱️</span>
+                    <div class="metric-content">
+                        <span class="metric-label">Tiempo promedio por respuesta:</span>
+                        <span id="avg-time" class="metric-value">0 s</span>
+                    </div>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-icon">⏳</span>
+                    <div class="metric-content">
+                        <span class="metric-label">Tiempo total empleado:</span>
+                        <span id="total-time" class="metric-value">0 s</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="review-container" class="review-section">
+                <h3>Preguntas para repasar:</h3>
+                <p>Aquí tienes las preguntas en las que te equivocaste para que puedas aprender de ellas:</p>
+                <ul id="review-list"></ul>
+            </div>
+            
+            <div class="end-actions">
+                <button id="retry-btn" class="btn primary">Intentar de nuevo con otras preguntas</button>
+                <button id="change-config-btn" class="btn tertiary">⚙️ Cambiar configuración</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="banco_preguntas.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
